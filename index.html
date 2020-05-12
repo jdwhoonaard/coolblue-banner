@@ -1,0 +1,235 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Zeer blauw.</title>
+</head>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Wrapper elements */
+  .flexbox {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0090e3;
+  }
+
+  .wrapper {
+    position: relative;
+    width: 300px;
+    height: 600px;
+    padding: 20px;
+
+    overflow: hidden;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid grey;
+    background-color: #fff;
+  }
+
+  /* Banner elements */
+  #header {
+    position: absolute;
+    top: 0;
+  }
+
+  #title {
+    padding-bottom: 20px;
+  }
+
+  #productName {
+    padding-bottom: 30px;
+  }
+
+  .productTeaser:hover {
+    animation: shake 2.5s infinite;
+  }
+
+  #footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+  }
+
+
+  /* Animations */
+  .fadeIn {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    animation-delay: 0s;
+  }
+
+  .flyIn {
+    transform: translateX(-100%);
+    animation: flyIn 1s forwards;
+    animation-delay: 0s;
+  }
+
+  .slideUp {
+    transform: translateY(100%);
+    animation: slideIn 1s forwards;
+    animation-delay: 0s;
+  }
+
+  .slideDown {
+    transform: translateY(-100%);
+    animation: slideDown 1s forwards;
+    animation-delay: 0s;
+  }
+
+  /* Animation Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes flyIn {
+    from {
+      transform: translateX(-100%);
+    }
+
+    to {
+      transform: translateX(0)
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(100%);
+    }
+
+    to {
+      transform: translateY(0)
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+    }
+
+    to {
+      transform: translateY(0)
+    }
+  }
+
+  @keyframes shake {
+    0% {
+      transform: rotate(0deg);
+      scale: 1;
+    }
+
+    10% {
+      transform: rotate(-1deg);
+    }
+
+    20% {
+      transform: rotate(1deg);
+      scale: 0.8;
+    }
+
+    30% {
+      transform: rotate(-2deg);
+    }
+
+    40% {
+      transform: rotate(3deg);
+      scale: 1;
+    }
+
+    50% {
+      transform: rotate(-2deg);
+    }
+
+    60% {
+      transform: rotate(3deg);
+      scale: 1.1;
+    }
+
+    70% {
+      transform: rotate(-1deg);
+    }
+
+    80% {
+      transform: rotate(2deg);
+      scale: 0.9;
+    }
+
+    90% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(1deg);
+      scale: 1;
+    }
+  }
+</style>
+
+<body>
+  <div class="flexbox">
+    <div class="wrapper">
+      <img id="header" src="./img/header.png" />
+
+      <img id="title" src="./img/title.png" />
+      <img id="productName" src="./img/subtitle.png" />
+      <div id="product">
+        <img class="productTeaser" src="./img/product.png" />
+      </div>
+
+      <a href="https://media.giphy.com/media/wpoLqr5FT1sY0/giphy.gif">
+        <img id="footer" src="./img/footer.png" />
+      </a>
+    </div>
+  </div>
+
+  <script>
+
+    // Definieer alle elementen, de bijpassende animatie en hun vertraging in een JSON object
+    var playlist = [
+      { id: 'header', name: 'slideDown', delay: '1s' },
+      { id: 'title', name: 'flyIn', delay: '0s' },
+      { id: 'productName', name: 'fadeIn', delay: '1s' },
+      { id: 'product', name: 'fadeIn', delay: '0.5s' },
+      { id: 'footer', name: 'slideUp', delay: '1s' },
+    ];
+
+    function play(animations) {
+      // Loop door alle animaties heen en haal ze mbv ID op uit de DOM.
+      for (var i = 0; i < animations.length; i++) {
+        const element = document.getElementById(animations[i].id);
+
+        // Definieer de animatie vertraging van het element
+        // en koppel het via een css class aan de keyframes
+        element.style.animationDelay = animations[i].delay;
+        element.classList.add(animations[i].name);
+      }
+    }
+
+    // Showtime!
+    play(playlist);
+  </script>
+</body>
+
+</html>
